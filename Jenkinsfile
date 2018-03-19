@@ -3,7 +3,9 @@ pipeline {
     stages{
         stage('Build'){
             steps {
+                echo 'before'
                 sh 'mvn clean package'
+                echo 'after'
             }
             post {
                 success {
