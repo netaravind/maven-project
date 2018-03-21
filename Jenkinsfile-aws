@@ -13,7 +13,9 @@ pipeline {
 stages{
         stage('Build'){
             steps {
+                echo 'Starting 1' 
                 sh 'mvn clean package'
+                echo 'Starting 2' 
             }
             post {
                 success {
