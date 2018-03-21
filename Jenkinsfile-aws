@@ -14,7 +14,7 @@ stages{
         stage('Build'){
             steps {
                 echo 'Starting 1' 
-                sh 'mvn clean package'
+                bat 'mvn clean package'
                 echo 'Starting 2' 
             }
             post {
@@ -29,13 +29,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i C:/Dev/sandbox/aws-jenkins/jenkins-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        bat "scp -i C:/Dev/sandbox/aws-jenkins/jenkins-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i C:/Dev/sandbox/aws-jenkins/jenkins-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
+                        bat "scp -i C:/Dev/sandbox/aws-jenkins/jenkins-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
                     }
                 }
             }
